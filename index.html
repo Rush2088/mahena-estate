@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ma'he'na Estate — Layout Proposal v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --green-deep: #1a3020;
+    --green-mid: #3a6b3c;
+    --green-light: #6a9e5f;
+    --paddy: #8ab870;
+    --paddy-light: #b8d99a;
+    --water: #6a9cb8;
+    --water-light: #a8d4e8;
+    --cream: #f5edd8;
+    --cream-light: #faf6ee;
+    --brown: #7a5c3a;
+    --gold: #c9a84c;
+    --text: #2a2a2a;
+    --muted: #7a7260;
+  }
+  body { font-family: 'Jost', sans-serif; background: #e8e0d0; color: var(--text); }
+  .page { max-width: 980px; margin: 30px auto; box-shadow: 0 8px 48px rgba(0,0,0,0.18); }
+
+  /* ── TOP ANNOTATION BAR ── */
+  .top-note { background: var(--brown); padding: 10px 20px; text-align: center; font-size: 11px; letter-spacing: 2px; color: var(--cream-light); text-transform: uppercase; }
+
+  /* ── NAV ── */
+  nav { background: var(--green-deep); padding: 18px 48px; display: flex; justify-content: space-between; align-items: center; }
+  .nav-logo { display: flex; flex-direction: column; }
+  .nav-logo-main { color: var(--cream); font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; letter-spacing: 5px; }
+  .nav-logo-main span { color: var(--gold); }
+  .nav-logo-sub { font-size: 8px; letter-spacing: 4px; color: rgba(245,237,216,0.4); text-transform: uppercase; margin-top: 2px; }
+  .nav-links { display: flex; gap: 24px; align-items: center; }
+  .nav-links a { color: rgba(245,237,216,0.6); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; }
+  .nav-links a:hover { color: var(--cream); }
+  .nav-cta { border: 1px solid var(--gold); color: var(--gold); padding: 7px 18px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; }
+
+  /* ── HERO ── */
+  .hero {
+    height: 580px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    background: linear-gradient(175deg, #1a3020 0%, #2a4e28 30%, #3a6a36 55%, #2a5030 100%);
+  }
+  /* Paddy field horizon at the bottom of hero — decorative colour band */
+  .hero-paddy-horizon {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 90px;
+    background: linear-gradient(to top, #5a8a3a 0%, #7aaa50 40%, transparent 100%);
+    opacity: 0.35;
+  }
+  /* Water creek line */
+  .hero-creek {
+    position: absolute; bottom: 52px; left: 0; right: 0; height: 10px;
+    background: linear-gradient(to right, transparent 0%, #6a9cb8 20%, #88c4e0 50%, #6a9cb8 80%, transparent 100%);
+    opacity: 0.55;
+  }
+  .hero-texture {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(ellipse at 25% 35%, rgba(106,158,95,0.25) 0%, transparent 55%),
+      radial-gradient(ellipse at 78% 65%, rgba(20,40,22,0.5) 0%, transparent 50%);
+  }
+  .hero-img-note { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.3); padding: 4px 16px; font-size: 9px; letter-spacing: 2px; color: rgba(255,255,255,0.4); text-transform: uppercase; z-index: 3; white-space: nowrap; }
+  .hero-content { z-index: 2; text-align: center; padding: 0 40px; }
+  .hero-eyebrow { font-size: 10px; letter-spacing: 5px; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: 68px; font-weight: 300; color: var(--cream); letter-spacing: 8px; line-height: 1.05; margin-bottom: 6px; }
+  .hero-title em { font-style: italic; color: #b5d49a; font-size: 48px; display: block; letter-spacing: 4px; }
+  .hero-meaning { font-size: 11px; color: rgba(245,237,216,0.45); letter-spacing: 3px; font-style: italic; font-family: 'Cormorant Garamond', serif; margin-bottom: 20px; }
+  .hero-tagline { font-size: 11px; color: rgba(245,237,216,0.55); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 32px; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 0 auto 28px; }
+  .hero-btns { display: flex; gap: 14px; justify-content: center; }
+  .btn-primary { background: var(--green-mid); color: var(--cream); padding: 12px 30px; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; border: none; cursor: pointer; font-family: 'Jost'; }
+  .btn-outline { background: transparent; color: var(--cream); padding: 12px 30px; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; border: 1px solid rgba(245,237,216,0.35); cursor: pointer; font-family: 'Jost'; }
+  .hero-scroll { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 2; text-align: center; }
+  .hero-scroll span { font-size: 8px; letter-spacing: 3px; color: rgba(245,237,216,0.3); text-transform: uppercase; display: block; margin-bottom: 5px; }
+  .scroll-line { width: 1px; height: 30px; background: linear-gradient(to bottom, rgba(245,237,216,0.3), transparent); margin: 0 auto; }
+  /* Paddy label bottom-right */
+  .paddy-label { position: absolute; bottom: 14px; right: 20px; z-index: 3; font-size: 8px; letter-spacing: 2px; color: rgba(180,220,130,0.4); text-transform: uppercase; }
+
+  /* ── STATS STRIP ── */
+  .strip { background: var(--gold); display: flex; }
+  .strip-item { flex: 1; padding: 18px 10px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px; border-right: 1px solid rgba(255,255,255,0.28); }
+  .strip-item:last-child { border-right: none; }
+  .si-num { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: var(--green-deep); line-height: 1; }
+  .si-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: rgba(30,51,32,0.65); }
+
+  /* ── STORY (with paddy panorama band) ── */
+  /* Paddy panorama band — a decorative illustrated strip between hero and story */
+  .paddy-band {
+    height: 130px; position: relative; overflow: hidden;
+    background: linear-gradient(to bottom, #2a5020 0%, #3a7030 30%, #5a9a3a 65%, #6aaa40 100%);
+  }
+  .paddy-band-creek {
+    position: absolute; bottom: 22px; left: 0; right: 0; height: 13px;
+    background: linear-gradient(to right, #3a78a0, #60aad0 20%, #80c8e8 50%, #60aad0 80%, #3a78a0);
+    opacity: 0.75;
+  }
+  /* Ground base strip */
+  .paddy-band-ground {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 22px;
+    background: linear-gradient(to top, #3a6020, #5a8830);
+  }
+  .coconut-row { position: absolute; bottom: 0; left: 0; right: 0; height: 100%; pointer-events: none; }
+  .paddy-band-label { position: absolute; right: 16px; bottom: 30px; font-size: 8px; letter-spacing: 3px; color: rgba(255,255,255,0.38); text-transform: uppercase; white-space: nowrap; z-index: 4; }
+
+  /* ── STORY ── */
+  .story { display: grid; grid-template-columns: 1fr 1fr; min-height: 360px; }
+  .story-img { background: linear-gradient(145deg, #2d5230, #4a8040, #3a6b3c); position: relative; overflow: hidden; min-height: 320px; }
+  .story-img-icon { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 72px; opacity: 0.2; }
+  .story-img-label { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); font-size: 8px; letter-spacing: 2px; color: rgba(255,255,255,0.3); text-transform: uppercase; white-space: nowrap; }
+  /* Heritage badge on story image */
+  .heritage-badge {
+    position: absolute; top: 20px; left: 20px; background: rgba(201,168,76,0.85);
+    padding: 10px 16px; z-index: 2;
+  }
+  .heritage-badge .hb-num { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--green-deep); font-weight: 600; line-height: 1; }
+  .heritage-badge .hb-label { font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: rgba(30,51,32,0.7); }
+  .story-text { background: var(--cream-light); padding: 52px 44px; display: flex; flex-direction: column; justify-content: center; }
+  .eyebrow { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--green-mid); margin-bottom: 14px; }
+  .story-text h2 { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 400; color: var(--green-deep); line-height: 1.2; margin-bottom: 18px; }
+  .story-text h2 em { font-style: italic; }
+  .story-text p { font-size: 13px; color: var(--muted); line-height: 1.9; margin-bottom: 16px; }
+  .text-link { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--green-mid); text-decoration: none; border-bottom: 1px solid var(--green-mid); padding-bottom: 2px; }
+  .gen-line { display: flex; gap: 8px; align-items: center; margin-bottom: 18px; }
+  .gen-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+  .gen-text { font-size: 11px; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; font-weight: 500; }
+
+  /* ── PRODUCTS ── */
+  .products { background: var(--green-deep); padding: 60px 44px; }
+  .products-header { text-align: center; margin-bottom: 44px; }
+  .products-header .eyebrow { color: var(--gold); }
+  .products-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300; color: var(--cream); }
+
+  /* All 7 products in one unified row */
+  .products-main-row { display: none; }
+  .products-all-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .product-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    width: 96px; height: 96px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 6px;
+    flex-shrink: 0;
+  }
+  .product-card.hero {
+    background: var(--green-mid);
+    border-color: rgba(255,255,255,0.2);
+    width: 110px; height: 110px;
+  }
+  .product-card .p-icon { font-size: 20px; margin-bottom: 5px; display: block; line-height: 1; }
+  .product-card.hero .p-icon { font-size: 22px; margin-bottom: 6px; }
+  .product-card .p-name { font-family: 'Cormorant Garamond', serif; font-size: 11px; color: var(--cream); margin-bottom: 3px; line-height: 1.2; }
+  .product-card.hero .p-name { font-size: 12px; }
+  .product-card .p-tag { font-size: 6px; letter-spacing: 1px; text-transform: uppercase; color: rgba(245,237,216,0.35); }
+  .product-card.hero .p-tag { color: var(--gold); }
+
+  /* ── PADDY + VEGGIE SECTION ── */
+  .paddy-section {
+    position: relative; overflow: hidden; min-height: 260px;
+    background: linear-gradient(160deg, #3a6820 0%, #5a9030 40%, #7ab848 65%, #4a8030 100%);
+    display: grid; grid-template-columns: 1fr 1fr;
+  }
+  /* Buffalo grass SVG texture — rendered via canvas in JS */
+  .paddy-bg {
+    position: absolute; inset: 0;
+    overflow: hidden;
+  }
+  .paddy-bg canvas { width: 100%; height: 100%; opacity: 0.55; }
+  /* Creek running across the middle */
+  .paddy-creek-overlay {
+    position: absolute; top: 50%; left: 0; right: 0; height: 16px; transform: translateY(-50%);
+    background: linear-gradient(to right, rgba(80,160,200,0.0), rgba(80,160,200,0.7) 20%, rgba(120,190,220,0.85) 50%, rgba(80,160,200,0.7) 80%, rgba(80,160,200,0.0));
+  }
+  .paddy-content { position: relative; z-index: 2; padding: 44px 36px; }
+  .paddy-content h2 { font-family: 'Cormorant Garamond', serif; font-size: 30px; color: var(--cream); margin-bottom: 14px; line-height: 1.2; }
+  .paddy-content p { font-size: 12px; color: rgba(245,237,216,0.7); line-height: 1.85; margin-bottom: 20px; }
+  .veggie-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .vchip { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); padding: 5px 12px; font-size: 10px; color: rgba(245,237,216,0.8); letter-spacing: 1px; border-radius: 2px; }
+  .paddy-visual { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px; gap: 14px; }
+  /* Illustrated paddy + creek + estate diagram */
+  .paddy-diagram { width: 100%; max-width: 280px; }
+  .pd-row { display: flex; gap: 4px; margin-bottom: 4px; }
+  .pd-cell { flex: 1; height: 22px; border-radius: 2px; }
+  .pd-estate { background: rgba(30,80,20,0.7); border: 1px solid rgba(255,255,255,0.15); }
+  .pd-creek { background: rgba(80,160,200,0.6); height: 10px; flex: 1; border-radius: 1px; }
+  .pd-paddy { background: rgba(120,190,60,0.5); border: 1px solid rgba(255,255,255,0.1); }
+  .pd-label { font-size: 8px; letter-spacing: 2px; color: rgba(255,255,255,0.4); text-transform: uppercase; text-align: center; margin-bottom: 2px; }
+  .pd-legend { display: flex; gap: 12px; margin-top: 8px; justify-content: center; flex-wrap: wrap; }
+  .pd-legend-item { display: flex; gap: 5px; align-items: center; }
+  .pd-legend-dot { width: 10px; height: 10px; border-radius: 2px; }
+  .pd-legend-item span { font-size: 8px; color: rgba(255,255,255,0.45); letter-spacing: 1px; text-transform: uppercase; }
+
+  /* ── ESTATE FEATURES ── */
+  .estate-section { display: grid; grid-template-columns: 1fr 1fr; min-height: 200px; }
+  .estate-block { padding: 44px 36px; position: relative; }
+  .estate-block:nth-child(1) { background: linear-gradient(145deg, #1a3020, #3a6b3c); }
+  .estate-block:nth-child(2) { background: linear-gradient(145deg, #2d5a35, #4a8050); }
+  .estate-block .eb-icon { font-size: 30px; margin-bottom: 14px; display: block; }
+  .estate-block h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--cream); margin-bottom: 10px; }
+  .estate-block p { font-size: 11px; color: rgba(245,237,216,0.55); line-height: 1.8; }
+
+  /* ── FARMING ── */
+  .farming { display: grid; grid-template-columns: 1fr 1fr; }
+  .farming-text { background: var(--cream); padding: 56px 44px; display: flex; flex-direction: column; justify-content: center; }
+  .farming-text h2 { font-family: 'Cormorant Garamond', serif; font-size: 34px; color: var(--green-deep); margin-bottom: 18px; line-height: 1.2; }
+  .farming-text p { font-size: 13px; color: var(--muted); line-height: 1.9; margin-bottom: 14px; }
+  .farming-img { background: linear-gradient(160deg, #4a8050, #2d5230); min-height: 300px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .farming-img-inner { text-align: center; }
+  .farming-img-inner .fi-icon { font-size: 52px; opacity: 0.22; display: block; margin-bottom: 8px; }
+  .farming-img-inner .fi-label { font-size: 8px; letter-spacing: 2px; color: rgba(255,255,255,0.28); text-transform: uppercase; }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--green-deep); display: grid; grid-template-columns: 1fr 1fr; }
+  .contact-left { padding: 52px 44px; border-right: 1px solid rgba(255,255,255,0.07); }
+  .contact-left h2 { font-family: 'Cormorant Garamond', serif; font-size: 34px; color: var(--cream); margin-bottom: 22px; }
+  .contact-detail { display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start; }
+  .cd-icon { font-size: 13px; margin-top: 2px; }
+  .contact-detail p { font-size: 12px; color: rgba(245,237,216,0.55); line-height: 1.6; }
+  .contact-right { padding: 52px 44px; }
+  .contact-right h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--cream); margin-bottom: 22px; }
+  .form-field { margin-bottom: 12px; }
+  .form-field input, .form-field textarea { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 11px 13px; font-size: 12px; color: rgba(245,237,216,0.7); font-family: 'Jost'; outline: none; resize: none; }
+  .form-field input::placeholder, .form-field textarea::placeholder { color: rgba(245,237,216,0.22); letter-spacing: 2px; font-size: 9px; text-transform: uppercase; }
+  .form-field textarea { height: 76px; }
+  .form-submit { background: var(--gold); border: none; color: var(--green-deep); padding: 12px; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; font-family: 'Jost'; font-weight: 500; width: 100%; margin-top: 4px; }
+
+  @media print {
+    body { background: white !important; }
+    .page { max-width: 100% !important; margin: 0 !important; box-shadow: none !important; }
+    .top-note { display: none; }
+    nav { padding: 12px 24px !important; }
+    .hero { height: 300px !important; }
+    .hero-title { font-size: 40px !important; }
+    .paddy-band { height: 80px !important; }
+    .story, .farming { grid-template-columns: 1fr 1fr !important; }
+    .story-img, .farming-img { min-height: 180px !important; }
+    .products { padding: 28px 24px !important; }
+    .paddy-section { min-height: 180px !important; }
+    .contact { grid-template-columns: 1fr 1fr !important; }
+    .contact-left, .contact-right { padding: 24px !important; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="top-note">📋 Ma'he'na Estate — Layout Proposal v2 (For Review — Replace placeholder text & 📷 images with your own)</div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <div class="nav-logo-main"><span>Ma'he'na</span></div>
+      <div class="nav-logo-sub">"My Vegetable Land" · Est. 1895</div>
+    </div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Our Story</a>
+      <a href="#">Products</a>
+      <a href="#">The Estate</a>
+      <a href="#">Paddy & Garden</a>
+      <a href="#" class="nav-cta">Visit Us</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-texture"></div>
+    <div class="hero-paddy-horizon"></div>
+    <div class="hero-creek"></div>
+    <div class="hero-img-note">📷 Full-screen estate / coconut grove photograph here</div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">4th Generation · Est. 1895 · 7 Acres</div>
+      <div class="hero-title">MA'HE'NA<em>Estate</em></div>
+      <div class="hero-meaning">"My Vegetable Land"</div>
+      <div class="hero-tagline">Where Tradition Meets the Tropical Soil</div>
+      <div class="hero-divider"></div>
+      <div class="hero-btns">
+        <button class="btn-primary">Discover Our Estate</button>
+        <button class="btn-outline">Our Products</button>
+      </div>
+    </div>
+    <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+
+  </div>
+
+  <!-- STATS STRIP -->
+  <div class="strip">
+    <div class="strip-item"><div class="si-num">7</div><div class="si-label">Acres of Land</div></div>
+    <div class="strip-item"><div class="si-num">8</div><div class="si-label">Estate Products</div></div>
+    <div class="strip-item"><div class="si-num">4<sup style="font-size:14px">th</sup></div><div class="si-label">Generation Family</div></div>
+    <div class="strip-item"><div class="si-num">~130</div><div class="si-label">Years of Heritage</div></div>
+    <div class="strip-item"><div class="si-num">4</div><div class="si-label">Natural Wells</div></div>
+  </div>
+
+  <!-- PADDY PANORAMA BAND — coconut trees row -->
+  <div class="paddy-band">
+    <div class="paddy-band-ground"></div>
+    <svg class="coconut-row" id="coconutRow" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet"></svg>
+    <div class="paddy-band-label">🌴 Ma'he'na Estate · 🌾 Paddy boundary</div>
+  </div>
+  <script>
+  (function(){
+    const svg = document.getElementById('coconutRow');
+    const W = 980, H = 130;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.setAttribute('width', W);
+    svg.setAttribute('height', H);
+
+    const count = 26;
+    const spacing = W / count;
+
+    for(let i = 0; i < count; i++){
+      const x = i * spacing + spacing * 0.5 + (Math.random()-0.5)*8;
+      const baseY = H;
+      const trunkH = 70 + Math.random()*38;
+      const lean = (Math.random()-0.5)*0.14;
+      const scale = 0.75 + Math.random()*0.55;
+      const alpha = 0.28 + Math.random()*0.38;
+      const col = `rgba(12,40,10,${alpha})`;
+
+      const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+
+      // Trunk: gently curved, leaning slightly
+      const crownX = x + lean * trunkH;
+      const crownY = baseY - trunkH;
+      const cp1x = x + lean * trunkH * 0.4 + (Math.random()-0.5)*5;
+      const cp1y = baseY - trunkH * 0.55;
+
+      const trunk = document.createElementNS('http://www.w3.org/2000/svg','path');
+      trunk.setAttribute('d', `M${x},${baseY} Q${cp1x},${cp1y} ${crownX},${crownY}`);
+      trunk.setAttribute('stroke', col);
+      trunk.setAttribute('stroke-width', 3 * scale);
+      trunk.setAttribute('fill', 'none');
+      trunk.setAttribute('stroke-linecap','round');
+      g.appendChild(trunk);
+
+      // Coconut palm fronds — they arc OUT then droop DOWN
+      // Real coconut fronds spread horizontally then the tips hang downward
+      const frondCount = 7 + Math.floor(Math.random()*3);
+      // Spread fronds in upper hemisphere only (not pointing down from crown base)
+      for(let f = 0; f < frondCount; f++){
+        // Spread angle: from ~-160° to ~-20° (upper arc), so fronds go left/right/up
+        const spreadFrac = f / (frondCount - 1); // 0..1
+        const spreadAngle = (-Math.PI * 0.88) + spreadFrac * (Math.PI * 0.76);
+        // frond length varies
+        const fLen = (28 + Math.random()*18) * scale;
+
+        // The frond TIP position: starts spreading outward then droops
+        // midpoint control: rise up slightly then out
+        const midX = crownX + Math.cos(spreadAngle) * fLen * 0.45;
+        const midY = crownY + Math.sin(spreadAngle) * fLen * 0.45 - 4 * scale; // slight upward arc in middle
+        // tip droops: add downward droop to tip
+        const tipX = crownX + Math.cos(spreadAngle) * fLen;
+        const tipY = crownY + Math.sin(spreadAngle) * fLen * 0.5 + 14 * scale; // tip droops down
+
+        const frond = document.createElementNS('http://www.w3.org/2000/svg','path');
+        frond.setAttribute('d',`M${crownX},${crownY} Q${midX},${midY} ${tipX},${tipY}`);
+        frond.setAttribute('stroke', col);
+        frond.setAttribute('stroke-width', (1.6 * scale));
+        frond.setAttribute('fill','none');
+        frond.setAttribute('stroke-linecap','round');
+        g.appendChild(frond);
+
+        // Each frond has smaller leaflets along it — thin short lines branching off
+        const leaflets = 4 + Math.floor(Math.random()*3);
+        for(let lf = 1; lf < leaflets; lf++){
+          const t = lf / leaflets;
+          // interpolate point along quadratic bezier
+          const bx = (1-t)*(1-t)*crownX + 2*(1-t)*t*midX + t*t*tipX;
+          const by = (1-t)*(1-t)*crownY + 2*(1-t)*t*midY + t*t*tipY;
+          // leaflet perpendicular to frond direction, drooping down
+          const leafAngle = spreadAngle + Math.PI/2 + (Math.random()-0.5)*0.3;
+          const leafLen = (6 + Math.random()*6) * scale;
+          const lx2 = bx + Math.cos(leafAngle) * leafLen;
+          const ly2 = by + Math.sin(leafAngle) * leafLen + 3*scale; // droop tip
+          const lx3 = bx - Math.cos(leafAngle) * leafLen;
+          const ly3 = by - Math.sin(leafAngle) * leafLen + 3*scale;
+
+          [lx2,ly2,lx3,ly3].forEach((_,idx) => {
+            if(idx%2===0){
+              const lpath = document.createElementNS('http://www.w3.org/2000/svg','path');
+              const ex = idx===0?lx2:lx3, ey = idx===0?ly2:ly3;
+              const cpx2 = bx + (ex-bx)*0.5;
+              const cpy2 = by + (ey-by)*0.5 + 4*scale;
+              lpath.setAttribute('d',`M${bx},${by} Q${cpx2},${cpy2} ${ex},${ey}`);
+              lpath.setAttribute('stroke', col);
+              lpath.setAttribute('stroke-width', 0.8 * scale);
+              lpath.setAttribute('fill','none');
+              lpath.setAttribute('stroke-linecap','round');
+              lpath.setAttribute('opacity','0.7');
+              g.appendChild(lpath);
+            }
+          });
+        }
+      }
+
+      // 2-3 coconut fruits clustered just below crown centre
+      const nutsCount = 2 + Math.floor(Math.random()*2);
+      for(let n=0; n<nutsCount; n++){
+        const nx = crownX + (Math.random()-0.5)*7*scale;
+        const ny = crownY + 6 + n*5*scale;
+        const nut = document.createElementNS('http://www.w3.org/2000/svg','ellipse');
+        nut.setAttribute('cx', nx); nut.setAttribute('cy', ny);
+        nut.setAttribute('rx', 3.5 * scale); nut.setAttribute('ry', 3 * scale);
+        nut.setAttribute('fill', col);
+        g.appendChild(nut);
+      }
+
+      svg.appendChild(g);
+    }
+  })();
+  </script>
+
+  <!-- STORY -->
+  <div class="story">
+    <div class="story-img">
+      <div class="story-img-icon">🌿</div>
+      <div class="heritage-badge">
+        <div class="hb-num">1895</div>
+        <div class="hb-label">Est. 4th Gen.</div>
+      </div>
+      <div class="story-img-label">📷 Estate / family heritage photo</div>
+    </div>
+    <div class="story-text">
+      <div class="gen-line"><div class="gen-dot"></div><div class="gen-text">4th Generation · ~130 Years of Heritage</div></div>
+      <div class="eyebrow">Our Story</div>
+      <h2>A Legacy Rooted<br><em>130 Years Deep</em></h2>
+      <p>Ma'he'na — meaning "my vegetable land" — has been in our family since 1895, now proudly tended by the fourth generation. What began as a simple tropical garden has grown into a thriving 7-acre estate, faithful to the original vision of nurturing the land with care and respect.</p>
+      <p>Coconut palms have towered here for generations, while spices, areca, and banana have flourished alongside. The land has fed our family, and now it shares its bounty with the world.</p>
+      <a href="#" class="text-link">Read Our Full Heritage Story →</a>
+    </div>
+  </div>
+
+  <!-- PRODUCTS -->
+  <div class="products">
+    <div class="products-header">
+      <div class="eyebrow">What We Grow</div>
+      <h2>The Fruits of Ma'he'na</h2>
+    </div>
+    <!-- All products in one unified row -->
+    <div class="products-all-row">
+      <div class="product-card hero">
+        <span class="p-icon">🥥</span>
+        <div class="p-name">Coconut</div>
+        <div class="p-tag">★ Main Produce</div>
+      </div>
+      <div class="product-card hero">
+        <span class="p-icon">🌴</span>
+        <div class="p-name">King Coconut</div>
+        <div class="p-tag">★ Main Produce</div>
+      </div>
+      <div class="product-card">
+        <span class="p-icon">🌰</span>
+        <div class="p-name">Areca Nut</div>
+        <div class="p-tag">By-product</div>
+      </div>
+      <div class="product-card">
+        <span class="p-icon">🌶️</span>
+        <div class="p-name">Pepper</div>
+        <div class="p-tag">By-product</div>
+      </div>
+      <div class="product-card">
+        <span class="p-icon">🪵</span>
+        <div class="p-name">Cinnamon</div>
+        <div class="p-tag">By-product</div>
+      </div>
+      <div class="product-card">
+        <span class="p-icon">🍌</span>
+        <div class="p-name">Banana</div>
+        <div class="p-tag">By-product</div>
+      </div>
+      <div class="product-card">
+        <span class="p-icon">🌿</span>
+        <div class="p-name">Garden Greens</div>
+        <div class="p-tag">Paddy Garden</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PADDY & VEGGIE GARDEN SECTION -->
+  <div class="paddy-section">
+    <div class="paddy-bg"><canvas id="grassCanvas"></canvas></div>
+    <script>
+    (function(){
+      const c = document.getElementById('grassCanvas');
+      const section = c.closest('.paddy-section');
+      const W = section.offsetWidth || 980;
+      const H = section.offsetHeight || 300;
+      c.width = W; c.height = H;
+      const ctx = c.getContext('2d');
+
+      // Draw buffalo grass — dense clumps of fine curved blades
+      const bladeCount = 1800;
+      for(let i = 0; i < bladeCount; i++){
+        const bx = Math.random() * W;
+        const by = Math.random() * H;
+        const bladeLen = 8 + Math.random() * 14;
+        const angle = -Math.PI/2 + (Math.random()-0.5)*1.1; // mostly upward, slight sway
+        const curve = (Math.random()-0.5)*18;
+        const alpha = 0.12 + Math.random()*0.22;
+        const thickness = 0.6 + Math.random()*0.8;
+
+        // pick shade of buffalo grass green
+        const greens = ['rgba(40,80,20','rgba(30,70,15','rgba(55,95,25','rgba(45,85,20','rgba(35,75,18'];
+        const col = greens[Math.floor(Math.random()*greens.length)] + `,${alpha})`;
+
+        ctx.beginPath();
+        ctx.moveTo(bx, by);
+        const cpx = bx + curve;
+        const cpy = by - bladeLen * 0.55;
+        const ex = bx + Math.cos(angle + curve*0.04) * bladeLen;
+        const ey = by + Math.sin(angle) * bladeLen;
+        ctx.quadraticCurveTo(cpx, cpy, ex, ey);
+        ctx.strokeStyle = col;
+        ctx.lineWidth = thickness;
+        ctx.lineCap = 'round';
+        ctx.stroke();
+      }
+    })();
+    </script>
+    <div class="paddy-creek-overlay"></div>
+    <!-- LEFT: Text -->
+    <div class="paddy-content">
+      <div class="eyebrow" style="color:var(--paddy-light)">Beyond the Estate</div>
+      <h2>Paddy Fields &<br>Our Creek-Side Garden</h2>
+      <p>Along the estate's eastern boundary, a narrow water creek winds between our land and the golden rice paddies beyond. Ma'he'na holds a small parcel of this paddy expanse — transformed into a lush creek-side vegetable garden where traditional crops grow with their roots in rich, water-fed soil.</p>
+      <div class="veggie-chips">
+        <span class="vchip">🐍 Snake Beans</span>
+        <span class="vchip">🍆 Egg Plant</span>
+        <span class="vchip">🌶️ Chillies</span>
+        <span class="vchip">🌾 Paddy Field</span>
+      </div>
+    </div>
+    <!-- RIGHT: Illustrated site map / diagram -->
+    <div class="paddy-visual">
+      <div style="font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-bottom:12px;">Illustrated Site Layout</div>
+      <div class="paddy-diagram">
+        <div class="pd-label">— Estate —</div>
+        <div class="pd-row"><div class="pd-cell pd-estate"></div><div class="pd-cell pd-estate"></div><div class="pd-cell pd-estate"></div></div>
+        <div class="pd-row"><div class="pd-cell pd-estate"></div><div class="pd-cell pd-estate"></div><div class="pd-cell pd-estate"></div></div>
+        <div class="pd-label" style="margin-top:6px;">〰 Water Creek 〰</div>
+        <div class="pd-row" style="margin-bottom:4px;"><div class="pd-creek"></div></div>
+        <div class="pd-label">— Paddy Field & Veggie Garden —</div>
+        <div class="pd-row"><div class="pd-cell pd-paddy"></div><div class="pd-cell pd-paddy"></div><div class="pd-cell pd-paddy"></div></div>
+        <div class="pd-row"><div class="pd-cell pd-paddy"></div><div class="pd-cell pd-paddy"></div><div class="pd-cell pd-paddy"></div></div>
+        <div class="pd-legend">
+          <div class="pd-legend-item"><div class="pd-legend-dot" style="background:rgba(30,80,20,0.7)"></div><span>Ma'he'na Estate</span></div>
+          <div class="pd-legend-item"><div class="pd-legend-dot" style="background:rgba(80,160,200,0.6)"></div><span>Creek</span></div>
+          <div class="pd-legend-item"><div class="pd-legend-dot" style="background:rgba(120,190,60,0.5)"></div><span>Paddy / Garden</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ESTATE FEATURES -->
+  <div class="estate-section">
+    <div class="estate-block">
+      <span class="eb-icon">💧</span>
+      <h3>4 Natural Water Wells</h3>
+      <p>Four ancient wells sit across the estate, naturally feeding its roots through every season. No bore pumps, no pipelines — just the earth giving what it always has, generation after generation since 1895.</p>
+    </div>
+    <div class="estate-block">
+      <span class="eb-icon">🌳</span>
+      <h3>7 Acres of Green</h3>
+      <p>A remote, untouched expanse of 7 acres — alive with tropical biodiversity, far from the noise of the modern world, and shaped by 150 years of patient, loving stewardship.</p>
+    </div>
+  </div>
+
+  <!-- FARMING -->
+  <div class="farming">
+    <div class="farming-text">
+      <div class="eyebrow">How We Farm</div>
+      <h2>Rooted in Tradition,<br>Grown with Care</h2>
+      <p>Over 130 years and four generations, the Ma'he'na way of farming has never changed — no shortcuts, no chemicals, no compromise. Each season, we follow the land's own rhythm: planting by the rains, harvesting by hand, and returning what we take.</p>
+      <p>From the first crack of a king coconut to the careful stripping of cinnamon bark, every act is a continuation of a family tradition that stretches back to 1895.</p>
+    </div>
+    <div class="farming-img">
+      <div class="farming-img-inner">
+        <span class="fi-icon">🌱</span>
+        <div class="fi-label">📷 Farming / harvest photo</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact">
+    <div class="contact-left">
+      <div class="eyebrow" style="color:var(--gold)">Get In Touch</div>
+      <h2>Visit or Enquire</h2>
+      <div class="contact-detail"><span class="cd-icon">📍</span><p>Ma'he'na Estate, Batepolea<br>Waturagam, Sri Lanka</p></div>
+      <div class="contact-detail"><span class="cd-icon">📞</span><p>+XX XXX XXXX XXX</p></div>
+      <div class="contact-detail"><span class="cd-icon">✉️</span><p>hello@mahena.com</p></div>
+      <div class="contact-detail"><span class="cd-icon">🕐</span><p>Estate visits by appointment only</p></div>
+    </div>
+    <div class="contact-right">
+      <h3>Send an Enquiry</h3>
+      <div class="form-field"><input type="text" placeholder="Your Name"></div>
+      <div class="form-field"><input type="email" placeholder="Email Address"></div>
+      <div class="form-field"><input type="text" placeholder="Subject"></div>
+      <div class="form-field"><textarea placeholder="Your Message"></textarea></div>
+      <button class="form-submit">Send Message</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Ma'he'na Estate — All Rights Reserved · "My Vegetable Land"</p>
+    <p>4th Generation · Est. 1895 · 🌴</p>
+  </footer>
+
+</div>
+</body>
+</html>
