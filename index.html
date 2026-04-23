@@ -251,6 +251,130 @@
     .contact-left, .contact-right { padding: 24px !important; }
     * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
   }
+
+  /* ── HAMBURGER (hidden on desktop) ── */
+  .hamburger { display: none; }
+
+  /* ════════════════════════════════════════
+     TABLET ≤ 768px
+  ════════════════════════════════════════ */
+  @media (max-width: 768px) {
+    body { background: #1a3020; }
+    .page { margin: 0; box-shadow: none; max-width: 100%; }
+
+    /* Nav */
+    nav { padding: 14px 20px; position: relative; flex-wrap: wrap; }
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0;
+      background: #0f2016; padding: 20px; gap: 0; z-index: 100;
+      border-top: 1px solid rgba(255,255,255,0.08); }
+    .nav-links.open { display: flex; }
+    .nav-links a { font-size: 13px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+      letter-spacing: 2px; }
+    .nav-links .nav-cta { border: 1px solid var(--gold); text-align: center; padding: 12px; margin-top: 10px;
+      border-bottom: 1px solid var(--gold) !important; }
+    .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; background: none; border: none; }
+    .hamburger span { width: 26px; height: 2px; background: var(--cream); display: block; transition: all 0.3s; border-radius: 2px; }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* Hero */
+    .hero { height: 100svh; min-height: 480px; max-height: 640px; }
+    .hero-title { font-size: 44px; letter-spacing: 4px; }
+    .hero-title em { font-size: 32px; letter-spacing: 3px; }
+    .hero-eyebrow { font-size: 9px; letter-spacing: 3px; }
+    .hero-tagline { font-size: 10px; letter-spacing: 2px; margin-bottom: 24px; }
+    .hero-btns { flex-direction: column; align-items: center; gap: 10px; }
+    .btn-primary, .btn-outline { width: 220px; text-align: center; padding: 14px 20px; font-size: 10px; }
+    .hero-img-note { font-size: 8px; white-space: normal; text-align: center; width: 75%; padding: 4px 10px; }
+
+    /* Stats strip — 2×3 grid */
+    .strip { flex-wrap: wrap; }
+    .strip-item { width: 33.333%; flex: none; padding: 14px 8px; }
+    .strip-item:nth-child(3) { border-right: none; }
+    .strip-item:nth-child(4), .strip-item:nth-child(5) { border-bottom: none; }
+    .si-num { font-size: 22px; }
+    .si-label { font-size: 8px; }
+
+    /* Paddy band */
+    .paddy-band { height: 80px; }
+    .paddy-band-label { display: none; }
+
+    /* Story */
+    .story { grid-template-columns: 1fr; }
+    .story-img { min-height: 200px; }
+    .story-text { padding: 36px 24px; }
+    .story-text h2 { font-size: 26px; }
+    .story-text p { font-size: 13px; }
+
+    /* Products */
+    .products { padding: 40px 20px; }
+    .products-header h2 { font-size: 30px; }
+
+    /* Paddy & garden */
+    .paddy-section { grid-template-columns: 1fr; }
+    .paddy-content { padding: 32px 24px; }
+    .paddy-content h2 { font-size: 24px; }
+    .paddy-visual { padding: 16px 24px 32px; }
+
+    /* Estate features */
+    .estate-section { grid-template-columns: 1fr; }
+    .estate-block { padding: 32px 24px; }
+
+    /* Farming */
+    .farming { grid-template-columns: 1fr; }
+    .farming-text { padding: 36px 24px; order: 2; }
+    .farming-text h2 { font-size: 26px; }
+    .farming-img { min-height: 200px; order: 1; }
+
+    /* Contact */
+    .contact { grid-template-columns: 1fr; }
+    .contact-left { padding: 36px 24px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .contact-left h2 { font-size: 26px; }
+    .contact-right { padding: 32px 24px; }
+
+    /* Footer */
+    footer { flex-direction: column; gap: 6px; text-align: center; padding: 18px 20px; }
+  }
+
+  /* ════════════════════════════════════════
+     SMALL PHONES ≤ 420px
+  ════════════════════════════════════════ */
+  @media (max-width: 420px) {
+    .hero { max-height: 560px; }
+    .hero-content { padding: 0 16px; }
+    .hero-title { font-size: 36px; letter-spacing: 2px; }
+    .hero-title em { font-size: 26px; }
+    .hero-meaning { font-size: 10px; }
+    .hero-divider { margin-bottom: 20px; }
+
+    /* Stats — 2 columns */
+    .strip-item { width: 50%; }
+    .strip-item:nth-child(2) { border-right: none; }
+    .strip-item:nth-child(3) { border-right: 1px solid rgba(255,255,255,0.28); }
+    .strip-item:nth-child(5) { border-right: none; }
+
+    .story-text { padding: 28px 16px; }
+    .story-text h2 { font-size: 22px; }
+
+    .products { padding: 28px 12px; }
+    .products-header h2 { font-size: 24px; }
+    .product-card { width: 76px; height: 76px; }
+    .product-card.hero { width: 88px; height: 88px; }
+    .product-card .p-icon { font-size: 17px; }
+    .product-card .p-name { font-size: 9px; }
+    .product-card .p-tag { font-size: 6px; }
+
+    .paddy-content { padding: 28px 16px; }
+    .paddy-content h2 { font-size: 20px; }
+    .paddy-content p { font-size: 12px; }
+
+    .farming-text { padding: 28px 16px; }
+    .farming-text h2 { font-size: 22px; }
+
+    .contact-left, .contact-right { padding: 24px 16px; }
+    .contact-left h2 { font-size: 22px; }
+  }
 </style>
 </head>
 <body>
@@ -260,20 +384,33 @@
   <div class="top-note">📋 Ma'he'na Estate — Layout Proposal v2 (For Review — Replace placeholder text & 📷 images with your own)</div>
 
   <!-- NAV -->
-  <nav>
+  <nav id="mainNav">
     <div class="nav-logo">
       <div class="nav-logo-main"><span>Ma'he'na</span></div>
       <div class="nav-logo-sub">"My Vegetable Land" · Est. 1895</div>
     </div>
-    <div class="nav-links">
-      <a href="#">Home</a>
-      <a href="#">Our Story</a>
-      <a href="#">Products</a>
-      <a href="#">The Estate</a>
-      <a href="#">Paddy & Garden</a>
-      <a href="#" class="nav-cta">Visit Us</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="#" onclick="closeMenu()">Home</a>
+      <a href="#" onclick="closeMenu()">Our Story</a>
+      <a href="#" onclick="closeMenu()">Products</a>
+      <a href="#" onclick="closeMenu()">The Estate</a>
+      <a href="#" onclick="closeMenu()">Paddy & Garden</a>
+      <a href="#" class="nav-cta" onclick="closeMenu()">Visit Us</a>
     </div>
   </nav>
+  <script>
+    function toggleMenu(){
+      document.getElementById('hamburger').classList.toggle('open');
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+    function closeMenu(){
+      document.getElementById('hamburger').classList.remove('open');
+      document.getElementById('navLinks').classList.remove('open');
+    }
+  </script>
 
   <!-- HERO -->
   <div class="hero">
