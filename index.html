@@ -156,14 +156,12 @@
   .product-card.hero {
     background: var(--green-mid);
     border-color: rgba(255,255,255,0.2);
-    width: 110px; height: 110px;
+    width: 96px; height: 96px;
   }
-  .product-card .p-icon { font-size: 20px; margin-bottom: 5px; display: block; line-height: 1; }
-  .product-card.hero .p-icon { font-size: 22px; margin-bottom: 6px; }
-  .product-card .p-name { font-family: 'Cormorant Garamond', serif; font-size: 11px; color: var(--cream); margin-bottom: 3px; line-height: 1.2; }
-  .product-card.hero .p-name { font-size: 12px; }
+  .product-card .p-icon, .product-card.hero .p-icon { font-size: 20px; margin-bottom: 5px; display: block; line-height: 1; }
+  .product-card .p-name, .product-card.hero .p-name { font-family: 'Cormorant Garamond', serif; font-size: 11px; color: var(--cream); margin-bottom: 3px; line-height: 1.2; }
   .product-card .p-tag { font-size: 6px; letter-spacing: 1px; text-transform: uppercase; color: rgba(245,237,216,0.35); }
-  .product-card.hero .p-tag { color: var(--gold); }
+  .product-card.hero .p-tag { color: var(--gold); font-size: 6px; letter-spacing: 1px; text-transform: uppercase; }
 
   /* ── PADDY + VEGGIE SECTION ── */
   .paddy-section {
@@ -359,10 +357,9 @@
 
     .products { padding: 28px 12px; }
     .products-header h2 { font-size: 24px; }
-    .product-card { width: 76px; height: 76px; }
-    .product-card.hero { width: 88px; height: 88px; }
-    .product-card .p-icon { font-size: 17px; }
-    .product-card .p-name { font-size: 9px; }
+    .product-card, .product-card.hero { width: 76px; height: 76px; }
+    .product-card .p-icon, .product-card.hero .p-icon { font-size: 17px; }
+    .product-card .p-name, .product-card.hero .p-name { font-size: 9px; }
     .product-card .p-tag { font-size: 6px; }
 
     .paddy-content { padding: 28px 16px; }
@@ -381,7 +378,7 @@
 
 <div class="page">
 
-  <div class="top-note">📋 Ma'he'na Estate — Layout Proposal v2 (For Review — Replace placeholder text & 📷 images with your own)</div>
+
 
   <!-- NAV -->
   <nav id="mainNav">
