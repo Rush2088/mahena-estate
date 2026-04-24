@@ -153,15 +153,14 @@
     text-align: center; padding: 6px;
     flex-shrink: 0;
   }
-  .product-card.hero {
+  .product-card.main-product {
     background: var(--green-mid);
     border-color: rgba(255,255,255,0.2);
-    width: 96px; height: 96px;
   }
-  .product-card .p-icon, .product-card.hero .p-icon { font-size: 20px; margin-bottom: 5px; display: block; line-height: 1; }
-  .product-card .p-name, .product-card.hero .p-name { font-family: 'Cormorant Garamond', serif; font-size: 11px; color: var(--cream); margin-bottom: 3px; line-height: 1.2; }
+  .product-card .p-icon { font-size: 20px; margin-bottom: 5px; display: block; line-height: 1; }
+  .product-card .p-name { font-family: 'Cormorant Garamond', serif; font-size: 11px; color: var(--cream); margin-bottom: 3px; line-height: 1.2; }
   .product-card .p-tag { font-size: 6px; letter-spacing: 1px; text-transform: uppercase; color: rgba(245,237,216,0.35); }
-  .product-card.hero .p-tag { color: var(--gold); font-size: 6px; letter-spacing: 1px; text-transform: uppercase; }
+  .product-card.main-product .p-tag { color: var(--gold); }
 
   /* ── PADDY + VEGGIE SECTION ── */
   .paddy-section {
@@ -305,15 +304,10 @@
     .story-text h2 { font-size: 26px; }
     .story-text p { font-size: 13px; }
 
-    /* Products — force all cards identical size */
+    /* Products — all cards identical size */
     .products { padding: 40px 20px; }
     .products-header h2 { font-size: 30px; }
-    .product-card,
-    .product-card.hero {
-      width: 88px !important;
-      height: 88px !important;
-      font-size: 11px;
-    }
+    .product-card { width: 88px; height: 88px; }
 
     /* Paddy & garden */
     .paddy-section { grid-template-columns: 1fr; }
@@ -363,10 +357,9 @@
 
     .products { padding: 28px 12px; }
     .products-header h2 { font-size: 24px; }
-    .product-card,
-    .product-card.hero { width: 72px !important; height: 72px !important; }
-    .product-card .p-icon, .product-card.hero .p-icon { font-size: 16px; }
-    .product-card .p-name, .product-card.hero .p-name { font-size: 9px; }
+    .product-card { width: 72px; height: 72px; }
+    .product-card .p-icon { font-size: 16px; }
+    .product-card .p-name { font-size: 9px; }
     .product-card .p-tag { font-size: 6px; }
 
     .paddy-content { padding: 28px 16px; }
@@ -593,12 +586,12 @@
     </div>
     <!-- All products in one unified row -->
     <div class="products-all-row">
-      <div class="product-card hero">
+      <div class="product-card main-product">
         <span class="p-icon">🥥</span>
         <div class="p-name">Coconut</div>
         <div class="p-tag">★ Main Produce</div>
       </div>
-      <div class="product-card hero">
+      <div class="product-card main-product">
         <span class="p-icon">🌴</span>
         <div class="p-name">King Coconut</div>
         <div class="p-tag">★ Main Produce</div>
