@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ma'he'na Estate — Layout Proposal v2</title>
+<title>Ma'he'na Estate</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -305,9 +305,15 @@
     .story-text h2 { font-size: 26px; }
     .story-text p { font-size: 13px; }
 
-    /* Products */
+    /* Products — force all cards identical size */
     .products { padding: 40px 20px; }
     .products-header h2 { font-size: 30px; }
+    .product-card,
+    .product-card.hero {
+      width: 88px !important;
+      height: 88px !important;
+      font-size: 11px;
+    }
 
     /* Paddy & garden */
     .paddy-section { grid-template-columns: 1fr; }
@@ -357,8 +363,9 @@
 
     .products { padding: 28px 12px; }
     .products-header h2 { font-size: 24px; }
-    .product-card, .product-card.hero { width: 76px; height: 76px; }
-    .product-card .p-icon, .product-card.hero .p-icon { font-size: 17px; }
+    .product-card,
+    .product-card.hero { width: 72px !important; height: 72px !important; }
+    .product-card .p-icon, .product-card.hero .p-icon { font-size: 16px; }
     .product-card .p-name, .product-card.hero .p-name { font-size: 9px; }
     .product-card .p-tag { font-size: 6px; }
 
